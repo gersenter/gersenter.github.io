@@ -1905,3 +1905,25 @@ html[lang='en'] .about h2{font-size:clamp(60px,7.15vw,120px)!important;line-heig
  .header .lang-switch:not(.ru) .lang-pill {transform:translateX(36px)!important}
  .header .header-actions .talk {width:88px!important;font-size:15px!important}
 }
+
+
+/* V42 — image loading and graceful fallback */
+.feature-media,
+.archive-img,
+.shelf-media,
+.case-cover,
+.case-gallery img,
+.ph29-art,
+.ph29-logo-visual,
+.heron32-pair img,
+.ice31-pair img {
+  background-color: #efeeeb;
+}
+img.asset-error {
+  display: block !important;
+  opacity: 1 !important;
+  filter: none !important;
+  object-fit: contain !important;
+  padding: 0 !important;
+  transform: none !important;
+}

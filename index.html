@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f5f4f1">
   <meta name="description" content="Zanggar Aidarkhanov — independent graphic designer specializing in visual identity, graphic systems and art direction">
   <title>ZANGGAR® — Graphic Designer</title>
-  <link rel="stylesheet" href="style.css?v=41">
+  <link rel="stylesheet" href="style.css?v=42">
 </head>
 <body>
 <div class="progress" id="progress"></div>
@@ -35,7 +35,7 @@
     </div>
     <div class="hero-stage">
       <h1 class="hero-title"><span class="hero-name-first">ZANGGAR<sup>®</sup></span><span class="hero-name-last">AIDARKHANOV</span></h1>
-      <img class="hero-portrait" src="assets/zanggar-portrait-v36.png" alt="Zanggar Aidarkhanov holding a red tray" decoding="async" fetchpriority="high">
+      <img class="hero-portrait" src="assets/zanggar-portrait-v36.webp" alt="Zanggar Aidarkhanov holding a red tray" decoding="async" fetchpriority="high" onerror="handleImageFailure(this)">
     </div>
     <div class="hero-foot">
       <div>
@@ -57,19 +57,19 @@
 
     <div class="featured-grid">
       <a class="feature-card feature-wide" href="#case/heronwater">
-        <div class="feature-media"><img src="assets/heronwater-cover.png" alt="How Feels Heronwater — music and merchandise" loading="eager"><div class="feature-gradient"></div></div>
+        <div class="feature-media"><img src="assets/heronwater-cover.webp" alt="How Feels Heronwater — music and merchandise" loading="eager" decoding="async" fetchpriority="high" onerror="handleImageFailure(this)"><div class="feature-gradient"></div></div>
         <div class="feature-tags"><span data-en="ART DIRECTION" data-ru="АРТ-ДИРЕКШН">ART DIRECTION</span><span data-en="MERCH" data-ru="МЕРЧ">MERCH</span><span data-en="GRAPHICS" data-ru="ГРАФИКА">GRAPHICS</span></div>
         <div class="feature-content"><h3>HOW FEELS HERONWATER</h3><p data-en="Expressive graphics and music-inspired merchandise with a distinctive attitude" data-ru="Экспрессивная графика и мерч, вдохновлённые музыкальной эстетикой">Expressive graphics and music-inspired merchandise with a distinctive attitude</p></div>
         
       </a>
       <a class="feature-card feature-half" href="#case/phoenix">
-        <div class="feature-media"><img src="assets/phoenix-cover.png" alt="Phoenix Shop — branding applications" loading="lazy"><div class="feature-gradient"></div></div>
+        <div class="feature-media"><img src="assets/phoenix-cover.webp" alt="Phoenix Shop — branding applications" loading="lazy" decoding="async" fetchpriority="low" onerror="handleImageFailure(this)"><div class="feature-gradient"></div></div>
         <div class="feature-tags"><span data-en="BRAND IDENTITY" data-ru="АЙДЕНТИКА">BRAND IDENTITY</span><span data-en="PACKAGING" data-ru="УПАКОВКА">PACKAGING</span><span data-en="MERCH" data-ru="МЕРЧ">MERCH</span></div>
         <div class="feature-content"><h3>PHOENIX SHOP</h3><p data-en="A bold graphic system built around a distinctive identity and everyday brand applications" data-ru="Выразительная графическая система и айдентика на самых разных носителях">A bold graphic system built around a distinctive identity and everyday brand applications</p></div>
         
       </a>
       <a class="feature-card feature-half" href="#case/icewheel">
-        <div class="feature-media"><img src="assets/icewheel-cover.jpg" alt="ICEWHEEL — wheels and brand identity" loading="lazy"><div class="feature-gradient"></div></div>
+        <div class="feature-media"><img src="assets/icewheel-cover.webp" alt="ICEWHEEL — wheels and brand identity" loading="lazy" decoding="async" fetchpriority="low" onerror="handleImageFailure(this)"><div class="feature-gradient"></div></div>
         <div class="feature-tags"><span data-en="BRANDING" data-ru="БРЕНДИНГ">BRANDING</span><span data-en="OBJECTS" data-ru="ОБЪЕКТЫ">OBJECTS</span><span data-en="MERCH" data-ru="МЕРЧ">MERCH</span></div>
         <div class="feature-content"><h3>ICEWHEEL</h3><p data-en="A visual identity extending from engineered objects to apparel and branded details" data-ru="Айдентика от предметного дизайна до одежды и фирменных деталей">A visual identity extending from engineered objects to apparel and branded details</p></div>
         
@@ -197,10 +197,10 @@
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" aria-hidden="true">
   <button type="button" id="lightbox-close" aria-label="Close image">✕</button>
-  <img id="lightbox-img" alt="">
+  <img id="lightbox-img" alt="" onerror="handleImageFailure(this)">
   <span id="lightbox-caption"></span>
 </div>
 
-<script src="script.js?v=41"></script>
+<script src="script.js?v=42"></script>
 </body>
 </html>

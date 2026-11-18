@@ -1,71 +1,83 @@
 const A='assets/';
+const IMAGE_FALLBACK_SRC = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' rx='28' fill='%23efeeeb'/%3E%3Crect x='285' y='190' width='230' height='180' rx='18' fill='none' stroke='%23c5c1ba' stroke-width='10'/%3E%3Ccircle cx='445' cy='245' r='22' fill='none' stroke='%23c5c1ba' stroke-width='10'/%3E%3Cpath d='M305 340l70-75 55 55 35-35 35 55' fill='none' stroke='%23c5c1ba' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E";
+function handleImageFailure(img){
+ if(!img || img.dataset.fallbackApplied==='true') return;
+ img.dataset.fallbackApplied='true';
+ img.classList.add('asset-error');
+ img.src=IMAGE_FALLBACK_SRC;
+}
+window.handleImageFailure=handleImageFailure;
+document.addEventListener('error',event=>{
+ const target=event.target;
+ if(target instanceof HTMLImageElement) handleImageFailure(target);
+},true);
 
 const archiveItems=[
- {name:'The International — Tickets', cat:'graphics', img:'ti-ticket-new.png', year:'2026'},
- {name:'Running Merch 01', cat:'apparel', img:'mystart-white-new.png', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
- {name:'Manhole Concept — Baikonur', cat:'objects', img:'manhole-baikonur-v38.png', year:'2026', tagEn:'OBJECT CONCEPT', tagRu:'КОНЦЕПТ ЛЮКА'},
- {name:'heronwater figurine', cat:'3d', img:'heronwater-figurine.png', year:'2026', tagEn:'FIGURINE', tagRu:'ФИГУРКА'},
- {name:'The International — Player Pass', cat:'graphics', img:'ti-pass-red.png', year:'2026', tagEn:'BADGE', tagRu:'БЕЙДЖ'},
- {name:'Running Merch 02', cat:'apparel', img:'mystart-blue-new.png', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
- {name:'Almaty City Stamps', cat:'graphics', img:'city-almaty-v38.png', year:'2026', tagEn:'GRAPHICS', tagRu:'ГРАФИКА'},
- {name:'depressant figurine', cat:'3d', img:'depressant-figurine.png', year:'2026', tagEn:'FIGURINE', tagRu:'ФИГУРКА'},
- {name:'Milli Mücadele Müzesi — ID Card', cat:'graphics', img:'museum-badge-v38.png', year:'2026', tagEn:'ID CARD', tagRu:'АЙДИ-КАРТА'},
- {name:'ICEWHEEL — Work Uniform', cat:'apparel', img:'ice-v31-jacket.png', year:'2026', tagEn:'UNIFORM', tagRu:'УНИФОРМА'},
- {name:'Manhole Concept — Turkistan', cat:'objects', img:'manhole-turkistan-v38.png', year:'2026', tagEn:'OBJECT CONCEPT', tagRu:'КОНЦЕПТ ЛЮКА'},
- {name:'ICEWHEEL — Utility Gloves', cat:'apparel', img:'ice-v31-gloves.png', year:'2026', tagEn:'UNIFORM', tagRu:'УНИФОРМА'},
+ {name:'The International — Tickets', cat:'graphics', img:'ti-ticket-new.webp', year:'2026'},
+ {name:'Running Merch 01', cat:'apparel', img:'mystart-white-new.webp', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
+ {name:'Manhole Concept — Baikonur', cat:'objects', img:'manhole-baikonur-v38.webp', year:'2026', tagEn:'OBJECT CONCEPT', tagRu:'КОНЦЕПТ ЛЮКА'},
+ {name:'heronwater figurine', cat:'3d', img:'heronwater-figurine.webp', year:'2026', tagEn:'FIGURINE', tagRu:'ФИГУРКА'},
+ {name:'The International — Player Pass', cat:'graphics', img:'ti-pass-red.webp', year:'2026', tagEn:'BADGE', tagRu:'БЕЙДЖ'},
+ {name:'Running Merch 02', cat:'apparel', img:'mystart-blue-new.webp', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
+ {name:'Almaty City Stamps', cat:'graphics', img:'city-almaty-v38.webp', year:'2026', tagEn:'GRAPHICS', tagRu:'ГРАФИКА'},
+ {name:'depressant figurine', cat:'3d', img:'depressant-figurine.webp', year:'2026', tagEn:'FIGURINE', tagRu:'ФИГУРКА'},
+ {name:'Milli Mücadele Müzesi — ID Card', cat:'graphics', img:'museum-badge-v38.webp', year:'2026', tagEn:'ID CARD', tagRu:'АЙДИ-КАРТА'},
+ {name:'ICEWHEEL — Work Uniform', cat:'apparel', img:'ice-v31-jacket.webp', year:'2026', tagEn:'UNIFORM', tagRu:'УНИФОРМА'},
+ {name:'Manhole Concept — Turkistan', cat:'objects', img:'manhole-turkistan-v38.webp', year:'2026', tagEn:'OBJECT CONCEPT', tagRu:'КОНЦЕПТ ЛЮКА'},
+ {name:'ICEWHEEL — Utility Gloves', cat:'apparel', img:'ice-v31-gloves.webp', year:'2026', tagEn:'UNIFORM', tagRu:'УНИФОРМА'},
  {name:'depressant — earth', cat:'covers', img:'depressant-earth.webp', year:'2026', tagEn:'COVER ART', tagRu:'ОБЛОЖКА'},
- {name:'xxxmanera figurine', cat:'3d', img:'xxxmanera-figurine.png', year:'2026', tagEn:'FIGURINE', tagRu:'ФИГУРКА'},
- {name:'OGBUDA figurine', cat:'3d', img:'ogbuda-figurine.png', year:'2026', tagEn:'FIGURINE', tagRu:'ФИГУРКА'},
- {name:'depressant — not fair', cat:'covers', img:'depressant-not-fair.jpg', year:'2026', tagEn:'COVER ART', tagRu:'ОБЛОЖКА'},
- {name:'The International — T-Shirt 03', cat:'apparel', img:'ti-tee-crimson.png', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
- {name:'depressant — rebola pro pai', cat:'covers', img:'depressant-rebola-pro-pai.jpg', year:'2026', tagEn:'COVER ART', tagRu:'ОБЛОЖКА'},
- {name:'The International — T-Shirt 02', cat:'apparel', img:'ti-polo-onyx.png', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
+ {name:'xxxmanera figurine', cat:'3d', img:'xxxmanera-figurine.webp', year:'2026', tagEn:'FIGURINE', tagRu:'ФИГУРКА'},
+ {name:'OGBUDA figurine', cat:'3d', img:'ogbuda-figurine.webp', year:'2026', tagEn:'FIGURINE', tagRu:'ФИГУРКА'},
+ {name:'depressant — not fair', cat:'covers', img:'depressant-not-fair.webp', year:'2026', tagEn:'COVER ART', tagRu:'ОБЛОЖКА'},
+ {name:'The International — T-Shirt 03', cat:'apparel', img:'ti-tee-crimson.webp', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
+ {name:'depressant — rebola pro pai', cat:'covers', img:'depressant-rebola-pro-pai.webp', year:'2026', tagEn:'COVER ART', tagRu:'ОБЛОЖКА'},
+ {name:'The International — T-Shirt 02', cat:'apparel', img:'ti-polo-onyx.webp', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
  {name:'depressant — why?', cat:'covers', img:'depressant-why.webp', year:'2026', tagEn:'COVER ART', tagRu:'ОБЛОЖКА'},
- {name:'The International — T-Shirt 01', cat:'apparel', img:'ti-tee-dragon.png', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
+ {name:'The International — T-Shirt 01', cat:'apparel', img:'ti-tee-dragon.webp', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
  {name:'depressant — где ты?', cat:'covers', img:'depressant-gde-ty.webp', year:'2026', tagEn:'COVER ART', tagRu:'ОБЛОЖКА'},
- {name:'heronwater — Cap', cat:'apparel', img:'heron-v32-cap.png', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
- {name:'heronwater — T-Shirt', cat:'apparel', img:'heron-v32-shirt.png', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
- {name:'heronwater — Baseball Bat', cat:'objects', img:'heron-v32-bat.png', year:'2026', tagEn:'OBJECT', tagRu:'ОБЪЕКТ'},
- {name:'heronwater — USB Piece', cat:'objects', img:'heron-v32-usb.png', year:'2026', tagEn:'OBJECT', tagRu:'ОБЪЕКТ'},
- {name:'heronwater — Notebook', cat:'objects', img:'heron-v32-notebook.png', year:'2026', tagEn:'OBJECT', tagRu:'ОБЪЕКТ'},
- {name:'ICEWHEEL — Branded Flask', cat:'objects', img:'ice-v31-object-a.png', year:'2026', tagEn:'OBJECT', tagRu:'ОБЪЕКТ'},
- {name:'ICEWHEEL — Wheel Design', cat:'objects', img:'ice-v31-object-b.png', year:'2026', tagEn:'OBJECT', tagRu:'ОБЪЕКТ'},
- {name:'ICEWHEEL — Keychain', cat:'objects', img:'ice-v31-keychain.png', year:'2026', tagEn:'ACCESSORY', tagRu:'АКСЕССУАР'},
- {name:'ICEWHEEL — Car Air Fresheners', cat:'objects', img:'ice-v31-tag.png', year:'2026', tagEn:'CAR AIR FRESHENERS', tagRu:'АВТОАРОМАТИЗАТОРЫ'},
- {name:'ICEWHEEL — Envelope', cat:'graphics', img:'ice-v31-envelope.png', year:'2026', tagEn:'STATIONERY', tagRu:'КАНЦЕЛЯРИЯ'},
+ {name:'heronwater — Cap', cat:'apparel', img:'heron-v32-cap.webp', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
+ {name:'heronwater — T-Shirt', cat:'apparel', img:'heron-v32-shirt.webp', year:'2026', tagEn:'APPAREL', tagRu:'ОДЕЖДА'},
+ {name:'heronwater — Baseball Bat', cat:'objects', img:'heron-v32-bat.webp', year:'2026', tagEn:'OBJECT', tagRu:'ОБЪЕКТ'},
+ {name:'heronwater — USB Piece', cat:'objects', img:'heron-v32-usb.webp', year:'2026', tagEn:'OBJECT', tagRu:'ОБЪЕКТ'},
+ {name:'heronwater — Notebook', cat:'objects', img:'heron-v32-notebook.webp', year:'2026', tagEn:'OBJECT', tagRu:'ОБЪЕКТ'},
+ {name:'ICEWHEEL — Branded Flask', cat:'objects', img:'ice-v31-object-a.webp', year:'2026', tagEn:'OBJECT', tagRu:'ОБЪЕКТ'},
+ {name:'ICEWHEEL — Wheel Design', cat:'objects', img:'ice-v31-object-b.webp', year:'2026', tagEn:'OBJECT', tagRu:'ОБЪЕКТ'},
+ {name:'ICEWHEEL — Keychain', cat:'objects', img:'ice-v31-keychain.webp', year:'2026', tagEn:'ACCESSORY', tagRu:'АКСЕССУАР'},
+ {name:'ICEWHEEL — Car Air Fresheners', cat:'objects', img:'ice-v31-tag.webp', year:'2026', tagEn:'CAR AIR FRESHENERS', tagRu:'АВТОАРОМАТИЗАТОРЫ'},
+ {name:'ICEWHEEL — Envelope', cat:'graphics', img:'ice-v31-envelope.webp', year:'2026', tagEn:'STATIONERY', tagRu:'КАНЦЕЛЯРИЯ'},
  {name:'Memories — Logo', cat:'graphics', img:'memories-logo.svg', year:'2026', tagEn:'LOGO', tagRu:'ЛОГОТИП'},
- {name:'The International — Spirit Rises Banner', cat:'graphics', img:'ti-banner-spirit-rises.jpg', year:'2026', tagEn:'BANNER', tagRu:'БАННЕР'},
- {name:'The International — The World Is Watching Banner', cat:'graphics', img:'ti-banner-world-is-watching.png', year:'2026', tagEn:'BANNER', tagRu:'БАННЕР'},
- {name:'The International — The International Banner', cat:'graphics', img:'ti-banner-the-international.png', year:'2026', tagEn:'BANNER', tagRu:'БАННЕР'},
- {name:'The International — XV Banner', cat:'graphics', img:'ti-banner-xi.jpg', year:'2026', tagEn:'BANNER', tagRu:'БАННЕР'},
- {name:'The International — VIP Badge', cat:'graphics', img:'ti-badge-vip.png', year:'2026', tagEn:'BADGE', tagRu:'БЕЙДЖ'},
- {name:'The International — Staff Badge', cat:'graphics', img:'ti-badge-staff.png', year:'2026', tagEn:'BADGE', tagRu:'БЕЙДЖ'},
- {name:'Master Farm — Packaging Redesign', cat:'graphics', img:'master-farm-packaging-redesign.png', year:'2026', tagEn:'PACKAGING', tagRu:'УПАКОВКА'},
- {name:'Maretti — Packaging Redesign', cat:'graphics', img:'maretti-packaging-redesign.png', year:'2026', tagEn:'PACKAGING', tagRu:'УПАКОВКА'},
- {name:'Too Zurman — Logo', cat:'graphics', img:'too-zurman-logo.png', year:'2026', tagEn:'LOGO', tagRu:'ЛОГОТИП'},
- {name:'International Registrations — Folder', cat:'graphics', img:'irs-madrid-folder.png', year:'2026', tagEn:'STATIONERY', tagRu:'КАНЦЕЛЯРИЯ'},
- {name:'Phoenix Shop — Shopping Bags', cat:'objects', img:'phoenix-v33-bags.png', year:'2026', tagEn:'PACKAGING', tagRu:'УПАКОВКА'},
- {name:'Phoenix Shop — Delivery Packaging', cat:'objects', img:'phoenix-v33-mailer.png', year:'2026', tagEn:'PACKAGING', tagRu:'УПАКОВКА'},
- {name:'Phoenix Shop — Sticker Set', cat:'graphics', img:'phoenix-v33-stickers.png', year:'2026', tagEn:'STICKERS', tagRu:'НАКЛЕЙКИ'},
- {name:'The International — T-Shirt Packaging', cat:'objects', img:'ti-tshirt-packaging.png', year:'2026', tagEn:'PACKAGING', tagRu:'УПАКОВКА'},
- {name:'Milli Mücadele Müzesi — Shopper', cat:'objects', img:'museum-shopper.png', year:'2026', tagEn:'SHOPPER', tagRu:'ШОППЕР'},
- {name:'Milli Mücadele Müzesi — Tickets', cat:'graphics', img:'museum-ticket-v38.png', year:'2026', tagEn:'TICKETS', tagRu:'БИЛЕТЫ'},
- {name:'Milli Mücadele Müzesi — Staff Shirt', cat:'apparel', img:'museum-shirt-v38.png', year:'2026', tagEn:'STAFF SHIRT', tagRu:'СТАФФ-РУБАШКА'},
- {name:'Pattern Study 01 (Phoenix Shop)', cat:'graphics', img:'pattern-brush-frame.jpg', year:'2026', tagEn:'PATTERN', tagRu:'ПАТТЕРН'},
- {name:'Pattern Study 02 (Phoenix Shop)', cat:'graphics', img:'pattern-corner-distress.jpg', year:'2026', tagEn:'PATTERN', tagRu:'ПАТТЕРН'},
- {name:'Pattern Study 03 (Phoenix Shop)', cat:'graphics', img:'pattern-spiral.jpg', year:'2026', tagEn:'PATTERN', tagRu:'ПАТТЕРН'},
- {name:'Pattern Study 04 (Phoenix Shop)', cat:'graphics', img:'pattern-red-bars.jpg', year:'2026', tagEn:'PATTERN', tagRu:'ПАТТЕРН'},
- {name:'Phoenix Shop — Logo', cat:'graphics', img:'phoenix-logo-mark.png', year:'2026', tagEn:'LOGO', tagRu:'ЛОГОТИП'},
- {name:'ICEWHEEL — Logo', cat:'graphics', img:'icewheel-logo-mark.png', year:'2026', tagEn:'LOGO', tagRu:'ЛОГОТИП'},
- {name:'Astana City Stamps', cat:'graphics', img:'city-astana-v38.png', year:'2026', tagEn:'GRAPHICS', tagRu:'ГРАФИКА'},
- {name:'Manhole Concept — Astana', cat:'objects', img:'manhole-astana-v38.png', year:'2026', tagEn:'OBJECT CONCEPT', tagRu:'КОНЦЕПТ ЛЮКА'},
- {name:'Manhole Concept — Almaty', cat:'objects', img:'manhole-almaty-v38.png', year:'2026', tagEn:'OBJECT CONCEPT', tagRu:'КОНЦЕПТ ЛЮКА'}
+ {name:'The International — Spirit Rises Banner', cat:'graphics', img:'ti-banner-spirit-rises.webp', year:'2026', tagEn:'BANNER', tagRu:'БАННЕР'},
+ {name:'The International — The World Is Watching Banner', cat:'graphics', img:'ti-banner-world-is-watching.webp', year:'2026', tagEn:'BANNER', tagRu:'БАННЕР'},
+ {name:'The International — The International Banner', cat:'graphics', img:'ti-banner-the-international.webp', year:'2026', tagEn:'BANNER', tagRu:'БАННЕР'},
+ {name:'The International — XV Banner', cat:'graphics', img:'ti-banner-xi.webp', year:'2026', tagEn:'BANNER', tagRu:'БАННЕР'},
+ {name:'The International — VIP Badge', cat:'graphics', img:'ti-badge-vip.webp', year:'2026', tagEn:'BADGE', tagRu:'БЕЙДЖ'},
+ {name:'The International — Staff Badge', cat:'graphics', img:'ti-badge-staff.webp', year:'2026', tagEn:'BADGE', tagRu:'БЕЙДЖ'},
+ {name:'Master Farm — Packaging Redesign', cat:'graphics', img:'master-farm-packaging-redesign.webp', year:'2026', tagEn:'PACKAGING', tagRu:'УПАКОВКА'},
+ {name:'Maretti — Packaging Redesign', cat:'graphics', img:'maretti-packaging-redesign.webp', year:'2026', tagEn:'PACKAGING', tagRu:'УПАКОВКА'},
+ {name:'Too Zurman — Logo', cat:'graphics', img:'too-zurman-logo.webp', year:'2026', tagEn:'LOGO', tagRu:'ЛОГОТИП'},
+ {name:'International Registrations — Folder', cat:'graphics', img:'irs-madrid-folder.webp', year:'2026', tagEn:'STATIONERY', tagRu:'КАНЦЕЛЯРИЯ'},
+ {name:'Phoenix Shop — Shopping Bags', cat:'objects', img:'phoenix-v33-bags.webp', year:'2026', tagEn:'PACKAGING', tagRu:'УПАКОВКА'},
+ {name:'Phoenix Shop — Delivery Packaging', cat:'objects', img:'phoenix-v33-mailer.webp', year:'2026', tagEn:'PACKAGING', tagRu:'УПАКОВКА'},
+ {name:'Phoenix Shop — Sticker Set', cat:'graphics', img:'phoenix-v33-stickers.webp', year:'2026', tagEn:'STICKERS', tagRu:'НАКЛЕЙКИ'},
+ {name:'The International — T-Shirt Packaging', cat:'objects', img:'ti-tshirt-packaging.webp', year:'2026', tagEn:'PACKAGING', tagRu:'УПАКОВКА'},
+ {name:'Milli Mücadele Müzesi — Shopper', cat:'objects', img:'museum-shopper.webp', year:'2026', tagEn:'SHOPPER', tagRu:'ШОППЕР'},
+ {name:'Milli Mücadele Müzesi — Tickets', cat:'graphics', img:'museum-ticket-v38.webp', year:'2026', tagEn:'TICKETS', tagRu:'БИЛЕТЫ'},
+ {name:'Milli Mücadele Müzesi — Staff Shirt', cat:'apparel', img:'museum-shirt-v38.webp', year:'2026', tagEn:'STAFF SHIRT', tagRu:'СТАФФ-РУБАШКА'},
+ {name:'Pattern Study 01 (Phoenix Shop)', cat:'graphics', img:'pattern-brush-frame.webp', year:'2026', tagEn:'PATTERN', tagRu:'ПАТТЕРН'},
+ {name:'Pattern Study 02 (Phoenix Shop)', cat:'graphics', img:'pattern-corner-distress.webp', year:'2026', tagEn:'PATTERN', tagRu:'ПАТТЕРН'},
+ {name:'Pattern Study 03 (Phoenix Shop)', cat:'graphics', img:'pattern-spiral.webp', year:'2026', tagEn:'PATTERN', tagRu:'ПАТТЕРН'},
+ {name:'Pattern Study 04 (Phoenix Shop)', cat:'graphics', img:'pattern-red-bars.webp', year:'2026', tagEn:'PATTERN', tagRu:'ПАТТЕРН'},
+ {name:'Phoenix Shop — Logo', cat:'graphics', img:'phoenix-logo-mark.webp', year:'2026', tagEn:'LOGO', tagRu:'ЛОГОТИП'},
+ {name:'ICEWHEEL — Logo', cat:'graphics', img:'icewheel-logo-mark.webp', year:'2026', tagEn:'LOGO', tagRu:'ЛОГОТИП'},
+ {name:'Astana City Stamps', cat:'graphics', img:'city-astana-v38.webp', year:'2026', tagEn:'GRAPHICS', tagRu:'ГРАФИКА'},
+ {name:'Manhole Concept — Astana', cat:'objects', img:'manhole-astana-v38.webp', year:'2026', tagEn:'OBJECT CONCEPT', tagRu:'КОНЦЕПТ ЛЮКА'},
+ {name:'Manhole Concept — Almaty', cat:'objects', img:'manhole-almaty-v38.webp', year:'2026', tagEn:'OBJECT CONCEPT', tagRu:'КОНЦЕПТ ЛЮКА'}
 ];
 
 const cases={
- phoenix:{title:'PHOENIX<br>SHOP',label:'PHOENIX SHOP',kind:'BRAND IDENTITY / RETAIL / MERCH',description:'A visual language with strong contrasts, a bold emblem and streetwear sensibility — a selected presentation of brand applications',intro:'A bold system made to leave a mark',story:'The Phoenix Shop selection explores a distinctive graphic mark, high-contrast typography and repeatable branding elements — applied across packaging, printed tape, apparel and graphic details',cover:'phoenix-cover.png',images:['phoenix-tape.webp','phoenix-bag.webp','phoenix-stickers.webp'],next:'icewheel'},
- icewheel:{title:'ICEWHEEL',label:'ICEWHEEL',kind:'IDENTITY / OBJECTS / MERCHANDISE',description:'A brand world expressed through industrial objects, fashion applications and collectible details',intro:'Identity that moves across materials',story:'From metallic wheel forms to custom product details, car air fresheners, apparel and branded accessories, ICEWHEEL uses a distinctive geometric motif across a varied family of physical objects',cover:'icewheel-cover.jpg',images:['icewheel-wheel.webp','icewheel-letter.webp','icewheel-tag.webp','icewheel-charm.webp','icewheel-jacket.webp','icewheel-gloves.webp','icewheel-flask.webp'],next:'heronwater'},
- heronwater:{title:'HOW FEELS<br>HERONWATER',label:'HOW FEELS HERONWATER',kind:'VISUAL IDENTITY / MUSIC / MERCH',description:'An expressive visual world built around handwritten lettering, contrast and music-inspired objects',intro:'A visual identity with a restless character',story:'A collection of expressive graphics and physical applications — from lettering to apparel and collectible objects, presented through the available project artwork',cover:'heronwater-cover.png',images:['heronwater-collage.webp'],next:'phoenix'}
+ phoenix:{title:'PHOENIX<br>SHOP',label:'PHOENIX SHOP',kind:'BRAND IDENTITY / RETAIL / MERCH',description:'A visual language with strong contrasts, a bold emblem and streetwear sensibility — a selected presentation of brand applications',intro:'A bold system made to leave a mark',story:'The Phoenix Shop selection explores a distinctive graphic mark, high-contrast typography and repeatable branding elements — applied across packaging, printed tape, apparel and graphic details',cover:'phoenix-cover.webp',images:['phoenix-tape.webp','phoenix-bag.webp','phoenix-stickers.webp'],next:'icewheel'},
+ icewheel:{title:'ICEWHEEL',label:'ICEWHEEL',kind:'IDENTITY / OBJECTS / MERCHANDISE',description:'A brand world expressed through industrial objects, fashion applications and collectible details',intro:'Identity that moves across materials',story:'From metallic wheel forms to custom product details, car air fresheners, apparel and branded accessories, ICEWHEEL uses a distinctive geometric motif across a varied family of physical objects',cover:'icewheel-cover.webp',images:['icewheel-wheel.webp','icewheel-letter.webp','icewheel-tag.webp','icewheel-charm.webp','icewheel-jacket.webp','icewheel-gloves.webp','icewheel-flask.webp'],next:'heronwater'},
+ heronwater:{title:'HOW FEELS<br>HERONWATER',label:'HOW FEELS HERONWATER',kind:'VISUAL IDENTITY / MUSIC / MERCH',description:'An expressive visual world built around handwritten lettering, contrast and music-inspired objects',intro:'A visual identity with a restless character',story:'A collection of expressive graphics and physical applications — from lettering to apparel and collectible objects, presented through the available project artwork',cover:'heronwater-cover.webp',images:['heronwater-collage.webp'],next:'phoenix'}
 };
 const caseRU={
  phoenix:{kind:'АЙДЕНТИКА / РИТЕЙЛ / МЕРЧ',description:'Графический язык на контрастах, выразительном знаке и эстетике стритвира — подборка фирменных носителей',intro:'Айдентика, которая оставляет след',story:'Phoenix Shop объединяет выразительный фирменный знак, контрастную типографику и повторяющиеся графические элементы — от фирменной ленты и упаковки до одежды и наклеек. Здесь представлена подборка визуальных применений, а не полный отчёт о проекте'},
@@ -182,7 +194,7 @@ function circularOffset(slot,active,total){let offset=slot-active;const half=Mat
 function filteredItems(){return archiveItems.filter(i=>currentFilter==='all'||i.cat===currentFilter)}
 function displayTitle(i){return currentLang==='ru'?(archiveTitlesRU[i.name]||i.name):i.name}
 function displayTag(i){return currentLang==='ru'?(i.tagRu||copy[currentLang].category[i.cat]):(i.tagEn||copy[currentLang].category[i.cat])}
-function tileHTML(i){const title=displayTitle(i),tag=displayTag(i);return `<article class="archive-tile" role="button" tabindex="0" aria-label="${escapeHTML(title)}" data-img="${escapeHTML(i.img)}" data-name="${escapeHTML(title)}"><div class="archive-img"><img loading="lazy" src="assets/${escapeHTML(i.img)}" alt="${escapeHTML(title)}"></div><div class="archive-meta"><strong>${escapeHTML(title)}</strong><span>${escapeHTML(tag)}</span></div></article>`}
+function tileHTML(i){const title=displayTitle(i),tag=displayTag(i);return `<article class="archive-tile" role="button" tabindex="0" aria-label="${escapeHTML(title)}" data-img="${escapeHTML(i.img)}" data-name="${escapeHTML(title)}"><div class="archive-img"><img loading="lazy" decoding="async" fetchpriority="low" src="assets/${escapeHTML(i.img)}" alt="${escapeHTML(title)}"></div><div class="archive-meta"><strong>${escapeHTML(title)}</strong><span>${escapeHTML(tag)}</span></div></article>`}
 function shelfHTML(items,index){
  const active=Math.min(activePerShelf[index]??0,items.length-1);
  activePerShelf[index]=active;
@@ -191,7 +203,8 @@ function shelfHTML(items,index){
  ${items.map((item,slot)=>{
    const offset=circularOffset(slot,active,items.length);
    const title=displayTitle(item),tag=displayTag(item);
-   return `<button type="button" class="shelf-card" data-slot="${slot}" data-offset="${offset}" aria-label="${escapeHTML(title)}" aria-current="${offset===0?'true':'false'}" tabindex="${Math.abs(offset)>2?'-1':'0'}"><span class="shelf-media"><img loading="eager" decoding="async" src="assets/${escapeHTML(item.img)}" alt="${escapeHTML(title)}" onerror="this.classList.add('asset-error')"></span><span class="shelf-meta"><strong>${escapeHTML(title)}</strong><span>${escapeHTML(tag)}</span></span></button>`;
+   const isInitialActive = index===0 && offset===0;
+   return `<button type="button" class="shelf-card" data-slot="${slot}" data-offset="${offset}" aria-label="${escapeHTML(title)}" aria-current="${offset===0?'true':'false'}" tabindex="${Math.abs(offset)>2?'-1':'0'}"><span class="shelf-media"><img loading="${isInitialActive?'eager':'lazy'}" decoding="async" fetchpriority="${isInitialActive?'high':'low'}" src="assets/${escapeHTML(item.img)}" alt="${escapeHTML(title)}"></span><span class="shelf-meta"><strong>${escapeHTML(title)}</strong><span>${escapeHTML(tag)}</span></span></button>`;
  }).join('')}</div>
  <div class="shelf-controls"><button type="button" class="shelf-nav" data-step="-1" aria-label="${currentLang==='ru'?'Предыдущий проект':'Previous project'}">←</button><span class="shelf-count">${String(active+1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}</span><button type="button" class="shelf-nav" data-step="1" aria-label="${currentLang==='ru'?'Следующий проект':'Next project'}">→</button></div>
  </section>`;
@@ -271,6 +284,11 @@ function setShelfActive(shelf,index){
    card.dataset.offset=offset;
    card.setAttribute('aria-current',String(offset===0));
    card.tabIndex=Math.abs(offset)>2?-1:0;
+   const image=card.querySelector('img');
+   if(image){
+     image.loading=Math.abs(offset)<=1?'eager':'lazy';
+     image.fetchPriority=offset===0?'high':'low';
+   }
  });
  shelf.querySelector('.shelf-count').textContent=`${String(next+1).padStart(2,'0')} / ${String(cards.length).padStart(2,'0')}`;
 }
@@ -370,17 +388,17 @@ function renderPhoenixCase(c){
   <main class="ph29-body">
    <section class="ph29-section wrap ph29-task">${header('the brief','задача','Build a recognizable visual identity for a streetwear store that lives beyond the logo','Создать узнаваемый визуальный стиль стритвир-магазина, который работает на каждом носителе')}</section>
    <section class="ph29-section wrap ph29-logo">${header('new logo','новый логотип','A distinctive emblem paired with clean typography — the foundation of the identity','Выразительный знак и лаконичная типографика — основа фирменного стиля')}
-    <div class="ph29-logo-visual">${asset('phoenix-v30-logo.png','Phoenix Shop — logo construction')}</div></section>
+    <div class="ph29-logo-visual">${asset('phoenix-v30-logo.webp','Phoenix Shop — logo construction')}</div></section>
    <section class="ph29-section wrap ph29-product">${header('shopping bags','пакеты','Everyday packaging carries the bold visual identity into the street','Контрастные пакеты превращаются в часть фирменной коммуникации')}
-    <div class="ph29-art">${asset('phoenix-v33-bags.png','Phoenix Shop — shopping bags')}</div></section>
+    <div class="ph29-art">${asset('phoenix-v33-bags.webp','Phoenix Shop — shopping bags')}</div></section>
    <section class="ph29-section wrap ph29-product">${header('delivery packaging','почтовая упаковка','A vivid brand mark makes even a delivered parcel recognizable','Фирменный знак делает узнаваемой даже посылку')}
-    <div class="ph29-art">${asset('phoenix-v33-mailer.png','Phoenix Shop — delivery packaging')}</div></section>
+    <div class="ph29-art">${asset('phoenix-v33-mailer.webp','Phoenix Shop — delivery packaging')}</div></section>
    <section class="ph29-section wrap ph29-product">${header('digital patterns','паттерны','Graphic elements create a consistent look across social content','Графические элементы объединяют визуальный язык сторис')}
-    <div class="ph29-art">${asset('phoenix-v29-stories.png','Phoenix Shop — social graphics')}</div></section>
+    <div class="ph29-art">${asset('phoenix-v29-stories.webp','Phoenix Shop — social graphics')}</div></section>
    <section class="ph29-section wrap ph29-product">${header('stickers','наклейки','Lettering and short phrases bring the brand’s character into the details','Леттеринг и короткие фразы продолжают характер бренда')}
-    <div class="ph29-art">${asset('phoenix-v33-stickers.png','Phoenix Shop — stickers')}</div></section>
+    <div class="ph29-art">${asset('phoenix-v33-stickers.webp','Phoenix Shop — stickers')}</div></section>
   </main>
-  <div class="ph29-tape" role="img" aria-label="Phoenix Shop branded tape">${asset('phoenix-v29-tape.png','')}</div>
+  <div class="ph29-tape" role="img" aria-label="Phoenix Shop branded tape">${asset('phoenix-v29-tape.webp','')}</div>
   <nav class="ph29-nav wrap" aria-label="Case navigation">
    <a href="#work">${local('back','назад')}</a><a href="#contact">${local('contact','контакт')}</a>
    <a href="#case/icewheel">${local('next case','следующий кейс')}<strong>ICEWHEEL ↗</strong></a>
@@ -401,13 +419,13 @@ function renderIcewheelCase(){
  <div class="ph29-hero"><h1>ICEWHEEL</h1><div class="ph29-tags">${tags.map(x=>local(x[0],x[1],'span')).join('')}</div></div></header>
  <main class="ph29-body">
  <section class="ph29-section wrap ph29-task">${caption('the brief','задача','Create a visual identity for a wheel and automotive accessories brand, connecting engineering with a distinct visual language','Создать айдентику для бренда автомобильных дисков и аксессуаров, объединив техническую эстетику и узнаваемый характер')}</section>
- <section class="ph29-section wrap ph29-logo">${caption('new logo','новый логотип','An eight-point geometric mark inspired by the structure of a wheel, paired with refined typography','Восьмилучевой геометрический знак, вдохновлённый формой колеса, в сочетании с лаконичной типографикой')}<div class="ph29-logo-visual">${img('ice-v31-logo-sketch.png','ICEWHEEL — logo construction')}</div></section>
- ${section('outerwear','верхняя одежда','A technical jacket transforms the signature geometry into a functional uniform detail','Куртка переносит геометрию бренда в функциональную одежду','ice-v31-jacket.png')}
- ${section('brand stationery','фирменные материалы','An envelope and note extend the identity into personal communication with customers','Конверт и карточка продолжают фирменный стиль в общении с покупателями','ice-v31-envelope.png')}
- ${section('work gloves','перчатки','Practical accessories carry the branded motifs and color palette','Рабочие аксессуары сохраняют узнаваемую палитру и графические элементы','ice-v31-gloves.png')}
- ${section('keychain','брелок','The emblem becomes a collectible metal object, recognizable from either side','Фирменный знак превращается в металлический брелок','ice-v31-keychain.png')}
- ${section('car air fresheners','автомобильные ароматизаторы','Hanging car air fresheners bring the geometric identity into the cabin','Подвесные ароматизаторы для автомобиля переносят фирменную геометрию в салон','ice-v31-tag.png')}
- <section class="ph29-section wrap ice31-finale">${caption('objects & details','предметы и детали','The identity also lives on physical products — one visual system across different materials','Фирменная система объединяет предметы и материалы в едином визуальном языке')}<div class="ice31-pair">${img('ice-v31-object-a.png','ICEWHEEL branded object')}${img('ice-v31-object-b.png','ICEWHEEL branded wheel design')}</div></section>
+ <section class="ph29-section wrap ph29-logo">${caption('new logo','новый логотип','An eight-point geometric mark inspired by the structure of a wheel, paired with refined typography','Восьмилучевой геометрический знак, вдохновлённый формой колеса, в сочетании с лаконичной типографикой')}<div class="ph29-logo-visual">${img('ice-v31-logo-sketch.webp','ICEWHEEL — logo construction')}</div></section>
+ ${section('outerwear','верхняя одежда','A technical jacket transforms the signature geometry into a functional uniform detail','Куртка переносит геометрию бренда в функциональную одежду','ice-v31-jacket.webp')}
+ ${section('brand stationery','фирменные материалы','An envelope and note extend the identity into personal communication with customers','Конверт и карточка продолжают фирменный стиль в общении с покупателями','ice-v31-envelope.webp')}
+ ${section('work gloves','перчатки','Practical accessories carry the branded motifs and color palette','Рабочие аксессуары сохраняют узнаваемую палитру и графические элементы','ice-v31-gloves.webp')}
+ ${section('keychain','брелок','The emblem becomes a collectible metal object, recognizable from either side','Фирменный знак превращается в металлический брелок','ice-v31-keychain.webp')}
+ ${section('car air fresheners','автомобильные ароматизаторы','Hanging car air fresheners bring the geometric identity into the cabin','Подвесные ароматизаторы для автомобиля переносят фирменную геометрию в салон','ice-v31-tag.webp')}
+ <section class="ph29-section wrap ice31-finale">${caption('objects & details','предметы и детали','The identity also lives on physical products — one visual system across different materials','Фирменная система объединяет предметы и материалы в едином визуальном языке')}<div class="ice31-pair">${img('ice-v31-object-a.webp','ICEWHEEL branded object')}${img('ice-v31-object-b.webp','ICEWHEEL branded wheel design')}</div></section>
  </main>
  <nav class="ph29-nav wrap" aria-label="Case navigation"><a href="#work">${local('back','назад')}</a><a href="#contact">${local('contact','контакт')}</a><a href="#case/heronwater">${local('next case','следующий кейс')}<strong>HERONWATER ↗</strong></a></nav>
  </article>`;
@@ -427,12 +445,12 @@ function renderHeronwaterCase(){
  <div class="ph29-hero"><h1>HOW FEELS<br>HERONWATER</h1><div class="ph29-tags">${tags.map(x=>local(x[0],x[1],'span')).join('')}</div></div></header>
  <main class="ph29-body">
  <section class="ph29-section wrap ph29-task">${caption('the brief','задача','Develop a distinctive visual language for music-inspired merchandise, connecting album concepts with tangible pieces','Создать выразительную визуальную систему мерча, которая переносит идеи музыкальных альбомов в реальные предметы')}</section>
- <section class="ph29-section wrap ph29-logo">${caption('visual language','визуальный язык','Hand-drawn lettering and sharp contrasts establish the tone of the collection','Рукописный леттеринг и сильные контрасты задают характер всей коллекции')}<div class="ph29-logo-visual">${img('heron-v32-logo.png','how feels heronwater — lettering study')}</div></section>
- <section class="ph29-section wrap heron32-outfits">${caption('apparel','одежда','A cap and T-shirt bring the artist’s distinctive lettering into everyday wear','Кепка и футболка переносят фирменный леттеринг артиста на повседневную одежду')}<div class="heron32-pair">${img('heron-v32-shirt.png','Heronwater black shirt')}${img('heron-v32-cap.png','Heronwater black cap')}</div></section>
- ${section('no commercial lyrics','no commercial lyrics','The album that established Heronwater as a strong, independent artist, translated into a collectible USB piece','Альбом, который закрепил heronwater как сильного и самостоятельного артиста, представлен в формате коллекционной флешки','heron-v32-usb.png')}
- ${section('dreams money can buy','dreams money can buy','An album about ambition, pressure and confidence in one’s own image, reflected in a bold baseball bat','Альбом про амбиции, давление и уверенность в собственном образе, воплощённый в выразительной бейсбольной бите','heron-v32-bat.png')}
- ${section('odyssey minds','odyssey minds','A personal archive of the artist’s thoughts, sketches and inner state — expressed as a notebook','Личный архив мыслей, набросков и внутреннего состояния артиста, воплощённый в блокноте','heron-v32-notebook.png')}
- ${section('collectible figurine','коллекционная фигурка','The artist’s visual identity takes a new shape as a character with recognizable details','Визуальный образ артиста превращается в фигурку с узнаваемыми деталями','heron-v32-figurine.png')}
+ <section class="ph29-section wrap ph29-logo">${caption('visual language','визуальный язык','Hand-drawn lettering and sharp contrasts establish the tone of the collection','Рукописный леттеринг и сильные контрасты задают характер всей коллекции')}<div class="ph29-logo-visual">${img('heron-v32-logo.webp','how feels heronwater — lettering study')}</div></section>
+ <section class="ph29-section wrap heron32-outfits">${caption('apparel','одежда','A cap and T-shirt bring the artist’s distinctive lettering into everyday wear','Кепка и футболка переносят фирменный леттеринг артиста на повседневную одежду')}<div class="heron32-pair">${img('heron-v32-shirt.webp','Heronwater black shirt')}${img('heron-v32-cap.webp','Heronwater black cap')}</div></section>
+ ${section('no commercial lyrics','no commercial lyrics','The album that established Heronwater as a strong, independent artist, translated into a collectible USB piece','Альбом, который закрепил heronwater как сильного и самостоятельного артиста, представлен в формате коллекционной флешки','heron-v32-usb.webp')}
+ ${section('dreams money can buy','dreams money can buy','An album about ambition, pressure and confidence in one’s own image, reflected in a bold baseball bat','Альбом про амбиции, давление и уверенность в собственном образе, воплощённый в выразительной бейсбольной бите','heron-v32-bat.webp')}
+ ${section('odyssey minds','odyssey minds','A personal archive of the artist’s thoughts, sketches and inner state — expressed as a notebook','Личный архив мыслей, набросков и внутреннего состояния артиста, воплощённый в блокноте','heron-v32-notebook.webp')}
+ ${section('collectible figurine','коллекционная фигурка','The artist’s visual identity takes a new shape as a character with recognizable details','Визуальный образ артиста превращается в фигурку с узнаваемыми деталями','heron-v32-figurine.webp')}
  </main>
  <nav class="ph29-nav wrap" aria-label="Case navigation"><a href="#work">${local('back','назад')}</a><a href="#contact">${local('contact','контакт')}</a><a href="#case/phoenix">${local('next case','следующий кейс')}<strong>PHOENIX SHOP ↗</strong></a></nav>
  </article>`;
@@ -453,7 +471,7 @@ caseContent.addEventListener('click',e=>{const b=e.target.closest('[data-case-la
 }});
 function renderCase(key,scrollToTop=true){
  const base=cases[key];if(!base)return;const c=currentLang==='ru'?{...base,...caseRU[key]}:base;
- caseContent.innerHTML=key==='phoenix'?renderPhoenixCase(c):key==='icewheel'?renderIcewheelCase():key==='heronwater'?renderHeronwaterCase():`<div class="case-hero wrap"><span>${copy[currentLang].study} / ${escapeHTML(c.kind)}</span><h1>${c.title}</h1><div class="case-hero-meta"><span>${copy[currentLang].author}<br>${copy[currentLang].project}</span><p>${escapeHTML(c.description)}</p></div></div><div class="case-cover"><img src="assets/${escapeHTML(c.cover)}" alt="${escapeHTML(c.label)} featured artwork"></div><div class="case-story wrap"><h3>${escapeHTML(c.intro)}</h3><p>${escapeHTML(c.story)}</p></div><div class="case-gallery wrap">${c.images.map((f,j)=>`<img src="assets/${escapeHTML(f)}" alt="${escapeHTML(c.label)} project artwork ${j+1}" loading="lazy">`).join('')}</div><a class="case-next" href="#case/${c.next}"><span>${copy[currentLang].next}</span><strong>${escapeHTML(cases[c.next].label)}</strong></a>`;
+ caseContent.innerHTML=key==='phoenix'?renderPhoenixCase(c):key==='icewheel'?renderIcewheelCase():key==='heronwater'?renderHeronwaterCase():`<div class="case-hero wrap"><span>${copy[currentLang].study} / ${escapeHTML(c.kind)}</span><h1>${c.title}</h1><div class="case-hero-meta"><span>${copy[currentLang].author}<br>${copy[currentLang].project}</span><p>${escapeHTML(c.description)}</p></div></div><div class="case-cover"><img src="assets/${escapeHTML(c.cover)}" alt="${escapeHTML(c.label)} featured artwork" loading="lazy" decoding="async"></div><div class="case-story wrap"><h3>${escapeHTML(c.intro)}</h3><p>${escapeHTML(c.story)}</p></div><div class="case-gallery wrap">${c.images.map((f,j)=>`<img src="assets/${escapeHTML(f)}" alt="${escapeHTML(c.label)} project artwork ${j+1}" loading="lazy" decoding="async">`).join('')}</div><a class="case-next" href="#case/${c.next}"><span>${copy[currentLang].next}</span><strong>${escapeHTML(cases[c.next].label)}</strong></a>`;
  if(currentLang==='ru')fixRuWidows(caseContent);
  cv.classList.add('open');cv.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';if(scrollToTop)cv.querySelector('.case-view-scroll').scrollTop=0;
 }
