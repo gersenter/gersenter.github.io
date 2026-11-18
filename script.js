@@ -191,7 +191,7 @@ function shelfHTML(items,index){
  ${items.map((item,slot)=>{
    const offset=circularOffset(slot,active,items.length);
    const title=displayTitle(item),tag=displayTag(item);
-   return `<button type="button" class="shelf-card" data-slot="${slot}" data-offset="${offset}" aria-label="${escapeHTML(title)}" aria-current="${offset===0?'true':'false'}" tabindex="${Math.abs(offset)>2?'-1':'0'}"><span class="shelf-media"><img loading="eager" decoding="async" src="assets/${escapeHTML(item.img)}" alt="${escapeHTML(title)}"></span><span class="shelf-meta"><strong>${escapeHTML(title)}</strong><span>${escapeHTML(tag)}</span></span></button>`;
+   return `<button type="button" class="shelf-card" data-slot="${slot}" data-offset="${offset}" aria-label="${escapeHTML(title)}" aria-current="${offset===0?'true':'false'}" tabindex="${Math.abs(offset)>2?'-1':'0'}"><span class="shelf-media"><img loading="eager" decoding="async" src="assets/${escapeHTML(item.img)}" alt="${escapeHTML(title)}" onerror="this.classList.add('asset-error')"></span><span class="shelf-meta"><strong>${escapeHTML(title)}</strong><span>${escapeHTML(tag)}</span></span></button>`;
  }).join('')}</div>
  <div class="shelf-controls"><button type="button" class="shelf-nav" data-step="-1" aria-label="${currentLang==='ru'?'Предыдущий проект':'Previous project'}">←</button><span class="shelf-count">${String(active+1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}</span><button type="button" class="shelf-nav" data-step="1" aria-label="${currentLang==='ru'?'Следующий проект':'Next project'}">→</button></div>
  </section>`;
@@ -514,6 +514,7 @@ function fitHeroComposition(){
   portrait.style.removeProperty('left');
   portrait.style.removeProperty('right');
   portrait.style.removeProperty('height');
+  portrait.style.removeProperty('width');
   return;
  }
 

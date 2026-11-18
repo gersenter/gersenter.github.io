@@ -1837,3 +1837,71 @@ html[lang='en'] .about h2{font-size:clamp(60px,7.15vw,120px)!important;line-heig
   .hero-portrait{height:84vw!important;margin-top:-5vw!important}
   html[lang='en'] .about h2,html[lang='ru'] .about h2{font-size:clamp(39px,9.5vw,48px)!important}
 }
+
+
+/* V41: touch/mobile-only layout: desktop styles intentionally unchanged */
+@media (max-width:750px) {
+  /* Brand, locale and contact share the first row, nav stays below. */
+  .header.wrap {
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    grid-template-areas:"brand actions" "navigation navigation"!important;
+    align-items:center!important;
+    column-gap:8px!important;
+    row-gap:13px!important;
+    height:auto!important;
+    min-height:0!important;
+    padding-top:13px!important;
+    padding-bottom:12px!important;
+  }
+  .header .header-brand {grid-area:brand!important;min-width:0!important;margin:0!important;gap:5px!important}
+  .header .logo {font-size:clamp(29px,7.6vw,43px)!important;line-height:1!important;flex:none!important}
+  .header .header-brand-note {font-size:clamp(8px,2.25vw,11px)!important;max-width:none!important;line-height:1.1!important}
+  .header .header-actions {grid-area:actions!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:7px!important;margin:0!important;min-width:0!important}
+  .header .lang-switch {width:82px!important;min-width:82px!important;max-width:82px!important;height:37px!important;grid-template-columns:38px 38px!important;grid-template-rows:32px!important;padding:2px!important}
+  .header .lang-switch button {width:38px!important;min-width:38px!important;max-width:38px!important;height:32px!important;font-size:11px!important}
+  .header .lang-switch .lang-pill {width:38px!important;height:32px!important}
+  .header .lang-switch:not(.ru) .lang-pill {transform:translateX(38px)!important}
+  .header .lang-switch.ru .lang-pill {transform:translateX(0)!important}
+  .header .header-actions .talk {box-sizing:border-box!important;width:clamp(91px,25vw,123px)!important;min-width:0!important;max-width:123px!important;height:37px!important;font-size:clamp(15px,4vw,19px)!important}
+  .header nav {grid-area:navigation!important;display:flex!important;justify-content:space-between!important;align-items:center!important;width:100%!important;min-width:0!important;margin:0!important;padding:2px 0!important;gap:10px!important}
+  .header nav a {font-size:clamp(10px,3vw,13px)!important;white-space:nowrap!important}
+  /* The actual stage stays tall enough for the cut-out figure; text and figure share one area. */
+  .hero-stage {position:relative!important;display:block!important;flex:none!important;min-height:0!important;height:clamp(325px,91vw,540px)!important;padding:clamp(42px,8vw,65px) 0 0!important;overflow:visible!important;isolation:isolate!important}
+  .hero-title {position:relative!important;z-index:1!important;width:100%!important;margin:0!important;line-height:.87!important}
+  .hero-title .hero-name-first {font-size:clamp(47px,13.7vw,99px)!important}
+  .hero-title .hero-name-last {font-size:clamp(38px,10.7vw,78px)!important}
+  .hero-portrait {position:absolute!important;display:block!important;left:auto!important;right:-1%!important;top:auto!important;bottom:0!important;inset-inline-start:auto!important;width:auto!important;height:clamp(285px,80vw,470px)!important;max-width:48%!important;max-height:calc(100% - 12px)!important;margin:0!important;transform:none!important;align-self:auto!important;object-fit:contain!important;object-position:right bottom!important;z-index:2!important}
+  .hero-foot {padding-top:14px!important}
+  /* Safari retains :hover after tapping: never turn carousel arrows dark on touch. */
+  .archive-grid.shelf-mode .shelf-nav,
+  .archive-grid.shelf-mode .shelf-nav:hover,
+  .archive-grid.shelf-mode .shelf-nav:active,
+  .archive-grid.shelf-mode .shelf-nav:focus,
+  .archive-grid.shelf-mode .shelf-nav:focus-visible {
+    background:rgba(255,255,255,.84)!important;
+    border:1px solid rgba(255,255,255,.92)!important;
+    color:#157ce9!important;
+    box-shadow:0 7px 17px rgba(20,20,20,.07)!important;
+    filter:none!important;
+    opacity:1!important;
+    transform:none!important;
+    outline:none!important;
+    -webkit-tap-highlight-color:transparent!important;
+  }
+  .archive-grid.shelf-mode .shelf-nav:disabled {opacity:.4!important}
+  .archive-grid.shelf-mode .shelf-nav {appearance:none!important;-webkit-appearance:none!important;touch-action:manipulation!important}
+  .archive-grid.shelf-mode .shelf-media img {display:block!important;visibility:visible!important;opacity:1!important;filter:none!important;transform:none!important;-webkit-transform:none!important;}
+  /* Missing image should no longer look like an intentionally blank card. */
+  .archive-grid.shelf-mode .shelf-media:has(img.asset-error) {background:#f4f0ec!important}
+  .archive-grid.shelf-mode .shelf-media img.asset-error {display:none!important}
+  .archive-grid.shelf-mode .shelf-media:has(img.asset-error)::after {content:'Image unavailable / Изображение не загружено';display:block;padding:20px;text-align:center;color:#716c69;font:500 12px/1.4 Arial,sans-serif}
+}
+@media (max-width:380px) {
+ .header.wrap {column-gap:4px!important}
+ .header .header-brand-note {font-size:8px!important}
+ .header .lang-switch {width:78px!important;min-width:78px!important;max-width:78px!important;grid-template-columns:36px 36px!important}
+ .header .lang-switch button,.header .lang-switch .lang-pill {width:36px!important;min-width:36px!important;max-width:36px!important}
+ .header .lang-switch:not(.ru) .lang-pill {transform:translateX(36px)!important}
+ .header .header-actions .talk {width:88px!important;font-size:15px!important}
+}
